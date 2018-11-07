@@ -30,6 +30,95 @@ void SRAM::writeByte(uint32_t address, uint8_t data) {
   disableSRAM();
 }
 
+uint16_t SRAM::readUnsignedInt16(uint32_t address) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(READ);
+  setAddress(address);
+  _sramData.byteData[0] = SPI.transfer(0x00);
+  _sramData.byteData[1] = SPI.transfer(0x00);
+  disableSRAM();
+  return _sramData.uint16Data;
+}
+uint16_t SRAM::writeUnsignedInt16(uint32_t address, uint16_t data) {
+  _sramData.uint16Data = data;
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(WRITE);
+  setAddress(address);
+  SPI.transfer(_sramData.byteData[0]);
+  SPI.transfer(_sramData.byteData[1]);
+  disableSRAM();
+}
+void SRAM::readUnsignedInt16s(uint32_t address, uint16_t *data, uint32_t len) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(READ);
+  setAddress(address);
+  for (uint32_t i = 0; i < len; i++) {
+    _sramData.byteData[0] = SPI.transfer(0x00);
+    _sramData.byteData[1] = SPI.transfer(0x00);
+    data[i] = _sramData.uint16Data;
+  }
+  disableSRAM();
+}
+void SRAM::writeUnsignedInt16s(uint32_t address, uint16_t *data, uint32_t len) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(WRITE);
+  setAddress(address);
+  for (uint32_t i = 0; i < len; i++) {
+    _sramData.uint16Data = data[i];
+    SPI.transfer(_sramData.byteData[0]);
+    SPI.transfer(_sramData.byteData[1]);
+  }
+  disableSRAM();
+}
+uint32_t SRAM::readUnsignedInt32(uint32_t address) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(READ);
+  setAddress(address);
+  _sramData.byteData[0] = SPI.transfer(0x00);
+  _sramData.byteData[1] = SPI.transfer(0x00);
+  _sramData.byteData[2] = SPI.transfer(0x00);
+  _sramData.byteData[3] = SPI.transfer(0x00);
+  disableSRAM();
+  return _sramData.uint32Data;
+}
+uint32_t SRAM::writeUnsignedInt32(uint32_t address, uint32_t data) {
+  _sramData.uint32Data = data;
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(WRITE);
+  setAddress(address);
+  SPI.transfer(_sramData.byteData[0]);
+  SPI.transfer(_sramData.byteData[1]);
+  SPI.transfer(_sramData.byteData[2]);
+  SPI.transfer(_sramData.byteData[3]);
+  disableSRAM();
+}
+void SRAM::readUnsignedInt32s(uint32_t address, uint32_t *data, uint32_t len) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(READ);
+  setAddress(address);
+  for (uint32_t i = 0; i < len; i++) {
+    _sramData.byteData[0] = SPI.transfer(0x00);
+    _sramData.byteData[1] = SPI.transfer(0x00);
+    _sramData.byteData[2] = SPI.transfer(0x00);
+    _sramData.byteData[3] = SPI.transfer(0x00);
+    data[i] = _sramData.uint32Data;
+  }
+  disableSRAM();
+}
+void SRAM::writeUnsignedInt32s(uint32_t address, uint32_t *data, uint32_t len) {
+  setModeRegister(SEQUENTIAL_MODE);
+  setMode(WRITE);
+  setAddress(address);
+  for (uint32_t i = 0; i < len; i++) {
+    _sramData.uint32Data = data[i];
+    SPI.transfer(_sramData.byteData[0]);
+    SPI.transfer(_sramData.byteData[1]);
+    SPI.transfer(_sramData.byteData[2]);
+    SPI.transfer(_sramData.byteData[3]);
+  }
+  disableSRAM();
+}
+
 int SRAM::readInt(uint32_t address)
 {
   setModeRegister(SEQUENTIAL_MODE);
@@ -270,4 +359,3 @@ void SRAM::setModeRegister(uint8_t modeData)
     enableSRAM();
   }
 }
-
