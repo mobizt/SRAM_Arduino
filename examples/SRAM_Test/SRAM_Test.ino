@@ -19,7 +19,7 @@
 #include "SRAM.h"
 
 SRAM sram;
-int cs = D3;
+uint8_t cs = D3;
 
 void setup() {
   Serial.begin(115200);
