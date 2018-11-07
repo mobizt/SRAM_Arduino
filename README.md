@@ -23,13 +23,12 @@ void setup() {
      SPI Clock divider:
      CLOCK_DIV2, CLOCK_DIV4, CLOCK_DIV8.. ,CLOCK_DIV128
 
-     SPI Mode:
+     SPI Mode: 
      SPI0 to SPI3
 
-     SPI Bit order
-     MSB and LSB
+     SPI Bit order: MSB and LSB
 
-     SRAM Capacity in kilobit
+     SRAM Capacity in kilobit:
      128, 256, 1024...
   */
 
@@ -38,7 +37,7 @@ void setup() {
 
 void loop() {
 
-  sram.writeInt(0, 12345);
+  sram.writeInt(0, -12345);
   int c = sram.readInt(0);
   Serial.println(sram.readInt(0));
 
