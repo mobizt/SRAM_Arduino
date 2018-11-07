@@ -44,6 +44,8 @@ typedef union {
   long longData;
   int intData;
   byte byteData [sizeof(long)];
+  uint16_t uint16Data;
+  uint32_t uint32Data;
 } dataUnion;
 
 
@@ -65,6 +67,14 @@ class SRAM
     void init(uint8_t csPin, uint32_t clockDivider, uint8_t spiMode, uint8_t bitOrder, uint16_t kBit);
     uint8_t readByte(uint32_t address);
     void writeByte(uint32_t address, uint8_t data);
+    uint16_t readUnsignedInt16(uint32_t address);
+    uint16_t writeUnsignedInt16(uint32_t address, uint16_t data);
+    void readUnsignedInt16s(uint32_t address, uint16_t *data, uint32_t len);
+    void writeUnsignedInt16s(uint32_t address, uint16_t *data, uint32_t len);
+    uint32_t readUnsignedInt32(uint32_t address);
+    uint32_t writeUnsignedInt32(uint32_t address, uint32_t data);
+    void readUnsignedInt32s(uint32_t address, uint32_t *data, uint32_t len);
+    void writeUnsignedInt32s(uint32_t address, uint32_t *data, uint32_t len);
     int readInt(uint32_t address);
     void writeInt(uint32_t address, int data);
     void readInts(uint32_t address, int *data, uint32_t len);
