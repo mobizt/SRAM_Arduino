@@ -40,10 +40,29 @@ void writePage(uint32_t address, char *data);
 ## Usages
 
 ```c++
+
+ /*
+   Test setup for WEMOS D1 Mini (ESP8266) and 23LC1024 SRAM (1 Mbit)
+
+   ---------------------------------------------------------------------------------
+   WEMOS D1 Mini          23LC1024              Supply
+   ---------------------------------------------------------------------------------
+   D3 (GPIO0)             1 (CS)
+   D6 (MISO)              2 (Slave Out)
+                          3 (SIO2)               +3.3 or +5V (or via pullup resistor)
+   GND                    4 (Vss)                GND
+   D7 (MOSI)              5 (Slave In)
+   D5 (SCK)               6 (SCK)
+                          7 (/HOLD)              +3.3 or +5V (or via pullup resistor)
+                          8 (Vcc)                +3.3 or +5V
+*/
+
+
+
 #include "SRAM.h"
 
 SRAM sram;
-uint8_t csPin = D3;
+int cs = D3;
 
 void setup() {
   Serial.begin(115200);
@@ -56,16 +75,17 @@ void setup() {
      SPI Clock divider:
      CLOCK_DIV2, CLOCK_DIV4, CLOCK_DIV8.. ,CLOCK_DIV128
 
-     SPI Mode: 
+     SPI Mode:
      SPI0 to SPI3
 
-     SPI Bit order: MSB and LSB
+     SPI Bit order
+     MSB and LSB
 
-     SRAM Capacity in kilobit:
+     SRAM Capacity in kilobit
      128, 256, 1024...
   */
 
-  sram.init(csPin, CLOCK_DIV2, SPI3, LSB, 1024);
+  sram.init(cs, CLOCK_DIV2, SPI3, LSB, 1024);
 }
 
 void loop() {
@@ -100,6 +120,22 @@ void loop() {
     Serial.print((uint8_t)pageDataOut[i]);
     Serial.print(" ");
   }
+  Serial.println();
+
+
+  uint32_t uint32DataIn[40];
+  uint32_t uint32DataOut[40];
+  for (uint16_t i = 0; i < 40; i++)
+    uint32DataIn[i] = 1230000000 + i;
+
+  sram.writeUnsignedInt32s(0, uint32DataIn, 40);
+  sram.readUnsignedInt32s(0, uint32DataOut, 40);
+
+  for (uint16_t i = 0; i < 40; i++) {
+    Serial.print(uint32DataOut[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
   Serial.println();
 
   delay(1000);
