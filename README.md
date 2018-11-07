@@ -42,7 +42,7 @@ void writePage(uint32_t address, char *data);
 ```c++
 
  /*
-   Test setup for WEMOS D1 Mini (ESP8266) and 23LC1024 SRAM (1 Mbit)
+   Test setup for WEMOS D1 Mini (ESP8266) and 23LC1024 SRAM (1 Mbit) with SPI interface
 
    ---------------------------------------------------------------------------------
    WEMOS D1 Mini          23LC1024              Supply
