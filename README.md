@@ -42,7 +42,7 @@ void writePage(uint32_t address, char *data);
 ```c++
 
  /*
-   Test setup for WEMOS D1 Mini (ESP8266) and 23LC1024 SRAM (1 Mbit) with SPI interface
+   Test setup for WEMOS D1 Mini (ESP8266) and 23LC1024 SRAM (1 Mbit)
 
    ---------------------------------------------------------------------------------
    WEMOS D1 Mini          23LC1024              Supply
@@ -62,7 +62,7 @@ void writePage(uint32_t address, char *data);
 #include "SRAM.h"
 
 SRAM sram;
-int cs = D3;
+uint8_t cs = D3;
 
 void setup() {
   Serial.begin(115200);
@@ -91,7 +91,6 @@ void setup() {
 void loop() {
 
   sram.writeInt(0, -12345);
-  int c = sram.readInt(0);
   Serial.println(sram.readInt(0));
 
 
@@ -122,6 +121,20 @@ void loop() {
   }
   Serial.println();
 
+
+  uint32_t uint16DataIn[40];
+  uint32_t uint16DataOut[40];
+  for (uint16_t i = 0; i < 40; i++)
+    uint16DataIn[i] = 65000 + i;
+
+  sram.writeUnsignedInt32s(0, uint16DataIn, 40);
+  sram.readUnsignedInt32s(0, uint16DataOut, 40);
+
+  for (uint16_t i = 0; i < 40; i++) {
+    Serial.print(uint16DataOut[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
 
   uint32_t uint32DataIn[40];
   uint32_t uint32DataOut[40];
