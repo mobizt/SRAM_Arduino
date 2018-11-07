@@ -46,8 +46,7 @@ void init(uint8_t csPin, uint32_t clockDivider, uint8_t spiMode, uint8_t bitOrde
 
     void writePage(uint32_t address, char *data);
     
-    ```
-
+```
 ## Usages
 
 ```c++
