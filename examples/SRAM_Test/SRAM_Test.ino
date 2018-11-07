@@ -80,6 +80,20 @@ void loop() {
   Serial.println();
 
 
+  uint32_t uint16DataIn[40];
+  uint32_t uint16DataOut[40];
+  for (uint16_t i = 0; i < 40; i++)
+    uint16DataIn[i] = 65000 + i;
+
+  sram.writeUnsignedInt32s(0, uint16DataIn, 40);
+  sram.readUnsignedInt32s(0, uint16DataOut, 40);
+
+  for (uint16_t i = 0; i < 40; i++) {
+    Serial.print(uint16DataOut[i]);
+    Serial.print(" ");
+  }
+  Serial.println();
+
   uint32_t uint32DataIn[40];
   uint32_t uint32DataOut[40];
   for (uint16_t i = 0; i < 40; i++)
