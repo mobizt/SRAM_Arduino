@@ -4,6 +4,50 @@ SPI Static RAM Library for Arduino
 ## Test Devices
 23K256, 23LC512 and 23LC1024
 
+## Public functions
+
+```c++
+
+void init(uint8_t csPin, uint32_t clockDivider, uint8_t spiMode, uint8_t bitOrder, uint16_t kBit);
+
+    uint8_t readByte(uint32_t address);
+
+    void writeByte(uint32_t address, uint8_t data);
+
+    int readInt(uint32_t address);
+
+    void writeInt(uint32_t address, int data);
+
+    void readInts(uint32_t address, int *data, uint32_t len);
+
+    void writeInts(uint32_t address, int *data, uint32_t len);
+
+    long readLong(uint32_t address);
+
+    void writeLong(uint32_t address, long data);
+
+    void readLongs(uint32_t address, long *data, uint32_t len);
+
+    void writeLongs(uint32_t address, long *data, uint32_t len);
+
+    float readFloat(uint32_t address);
+
+    void writeFloat(uint32_t address, float data);
+
+    void readFloats(uint32_t address, float *data, uint32_t len);
+
+    void writeFloats(uint32_t address, float *data, uint32_t len);
+
+    void readChars(uint32_t address, char *data, uint32_t len);
+
+    void writeChars(uint32_t address, char *data, uint32_t len);
+
+    void readPage(uint32_t address, char *data);
+
+    void writePage(uint32_t address, char *data);
+    
+    ```
+
 ## Usages
 
 ```c++
