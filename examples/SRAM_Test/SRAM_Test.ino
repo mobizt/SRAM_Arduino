@@ -48,7 +48,6 @@ void setup() {
 void loop() {
 
   sram.writeInt(0, -12345);
-  int c = sram.readInt(0);
   Serial.println(sram.readInt(0));
 
 
