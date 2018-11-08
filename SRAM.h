@@ -36,21 +36,20 @@
 #include <SPI.h>
 
 
-// SRAM Instruction
-#define READ  3
-#define WRITE 2
-#define RDMR  5 //Read Mode Register
-#define WRMR  1 //Write Mode Register
+//Read and Write operating instructions 
+#define READ  3 //Read data from SRAM's data buffer
+#define WRITE 2 //Write mode to SRAM's data buffer
+#define RDMR  5 //Read mode of operation settings value form SRAM's Mode Register
+#define WRMR  1 //Write mode of operation settings value to SRAM's Mode Register
 
-// SRAM Hold line
-#define HOLD 1
 
-//Mode Register
-#define BYTE_MODE (0x00 | HOLD)
-#define PAGE_MODE (0x80| HOLD)
-#define SEQUENTIAL_MODE (0x40| HOLD)
+//Mode Register's Mode of operation settings value 
+#define BYTE_MODE 0x00
+#define PAGE_MODE 0x80
+#define SEQUENTIAL_MODE 0x40 //Default
+#define RESERVED 0xc0
 
-//SPI Clock divider
+//Master's SPI Clock divider
 #define CLOCK_DIV2 SPI_CLOCK_DIV2
 #define CLOCK_DIV4 SPI_CLOCK_DIV4
 #define CLOCK_DIV8 SPI_CLOCK_DIV8
@@ -59,24 +58,24 @@
 #define CLOCK_DIV64 SPI_CLOCK_DIV64
 #define CLOCK_DIV128 SPI_CLOCK_DIV128
 
-//SPI Mode
+//Master's SPI Mode
 #define SPI0 SPI_MODE0
 #define SPI1 SPI_MODE1
 #define SPI2 SPI_MODE2
 #define SPI3 SPI_MODE3
 
-//SPI Bit order
+//Master's SPI Bit order
 #define MSB MSBFIRST 
 #define LSB LSBFIRST 
 
 
-typedef union {
-  float floatData;
-  long longData;
-  int intData;
-  byte byteData [sizeof(long)];
+typedef union {  
   uint16_t uint16Data;
-  uint32_t uint32Data;
+  uint32_t uint32Data;  
+  int intData;  
+  long longData;
+  float floatData;
+  byte byteData [sizeof(long)];
 } dataUnion;
 
 
@@ -122,7 +121,6 @@ class SRAM
     void writeChars(uint32_t address, char *data, uint32_t len);
     void readPage(uint32_t address, char *data);
     void writePage(uint32_t address, char *data);
-
 };
 
 #endif
