@@ -44,9 +44,9 @@
 
 
 //Mode Register's Mode of operation settings value 
-#define BYTE_MODE 0x00
-#define PAGE_MODE 0x80
-#define SEQUENTIAL_MODE 0x40 //Default
+#define BYTE_MODE 0x00 //Byte mode
+#define PAGE_MODE 0x80 //Page mode
+#define SEQUENTIAL_MODE 0x40 //Default, sequential mode
 #define RESERVED 0xc0
 
 //Master's SPI Clock divider
@@ -75,7 +75,7 @@ typedef union {
   uint32_t uint32Data;  
   int intData;  
   long longData;
-  float floatData;
+  float floatData;  
 } dataUnion;
 
 
