@@ -56,7 +56,7 @@ void loop() {
   Serial.println(sram.readInt(0));
 
   sram.writeFloat(0, 12345.67);
-  Serial.print("Int value -> ");
+  Serial.print("Float value -> ");
   Serial.println(sram.readFloat(0));
 
 
@@ -75,19 +75,19 @@ void loop() {
 
 
   char pageDataIn[32] = "";
-  char pageDataOut[32] = "";
-
-
   for (uint8_t i = 0; i < 32; i++) {
     pageDataIn[i] = i;
   }
 
-  for (uint16_t i = 0; i < 12; i++) {
-    sram.writePage(i, pageDataIn);
+  for (uint16_t i = 0; i < 3; i++) {
+    uint16_t address = i * 32;
+    sram.writePage(address, pageDataIn);
   }
 
-  for (uint16_t i = 0; i < 12; i++) {
-    sram.readPage(i, pageDataOut);
+  for (uint16_t i = 0; i < 3; i++) {
+    char pageDataOut[32] = "";
+    uint16_t address = i * 32;
+    sram.readPage(address, pageDataOut);
     Serial.print("Page");
     Serial.print(i);
     Serial.print(" value -> ");
