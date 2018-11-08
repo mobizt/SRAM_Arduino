@@ -6,12 +6,12 @@
    ---------------------------------------------------------------------------------
    D3 (GPIO0)             1 (CS)
    D6 (MISO)              2 (Slave Out)
-                          3 (SIO2)               +3.3 or +5V (or via pullup resistor)
+                          3 (SIO2)               Vcc (or through pull-up resistor)
    GND                    4 (Vss)                GND
    D7 (MOSI)              5 (Slave In)
    D5 (SCK)               6 (SCK)
-                          7 (/HOLD)              +3.3 or +5V (or via pullup resistor)
-                          8 (Vcc)                +3.3 or +5V
+                          7 (/HOLD)              Vcc (or through pull-up resistor)
+                          8 (Vcc)                Vcc (+3.3 for 23Kxxx or +3 to +5V for 23LCxxx)
 */
 
 
