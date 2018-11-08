@@ -76,7 +76,7 @@ typedef union {
   int intData;  
   long longData;
   float floatData;  
-} dataUnion;
+} sramData;
 
 
 class SRAM
@@ -86,7 +86,7 @@ class SRAM
     uint16_t _capacity;
     uint8_t _modeData;
     bool _sramState;
-    dataUnion _sramData;
+    sramData _sramData;
     void enableSRAM();
     void disableSRAM();
     void setAddress(uint32_t address);
