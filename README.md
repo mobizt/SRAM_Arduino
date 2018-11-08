@@ -1,5 +1,11 @@
 # SRAM_Arduino
-SPI Static RAM Library for Arduino
+SPI Static RAM library for Arduino
+
+This library provides microcontroller to read and write data to external Static RAM through SPI interface.
+
+The library was test and work well with Microchip SRAM and WEMOS D1 Mini (ESP8266) using the Arduino's standard SPI library.
+
+Copyright (c) 2018 K. Suwatchai (Mobizt)
 
 ## Test Devices
 23K256, 23LC512 and 23LC1024
