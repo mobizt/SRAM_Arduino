@@ -37,10 +37,10 @@
 
 
 //Read and Write operating instructions 
-#define READ  3 //Read data from SRAM's data buffer
-#define WRITE 2 //Write mode to SRAM's data buffer
-#define RDMR  5 //Read mode of operation settings value form SRAM's Mode Register
-#define WRMR  1 //Write mode of operation settings value to SRAM's Mode Register
+#define READ  0x03 //Read data from SRAM's data buffer
+#define WRITE 0x02 //Write mode to SRAM's data buffer
+#define RDMR  0x05 //Read mode of operation settings value form SRAM's Mode Register
+#define WRMR  0x01 //Write mode of operation settings value to SRAM's Mode Register
 
 
 //Mode Register's Mode of operation settings value 
