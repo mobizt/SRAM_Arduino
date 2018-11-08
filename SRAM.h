@@ -69,13 +69,13 @@
 #define LSB LSBFIRST 
 
 
-typedef union {  
+typedef union {
+  byte byteData [4];
   uint16_t uint16Data;
   uint32_t uint32Data;  
   int intData;  
   long longData;
   float floatData;
-  byte byteData [sizeof(long)];
 } dataUnion;
 
 
