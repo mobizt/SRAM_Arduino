@@ -8,7 +8,7 @@ The library was test and work well with Microchip SRAM and WEMOS D1 Mini (ESP826
 Copyright (c) 2018 K. Suwatchai (Mobizt)
 
 ## Test Devices
-23K256, 23LC512 and 23LC1024
+Microchip SRAM 23LC1024, WEMOS D1 Mini (ESP8266 based module). Other SRAMs with different capacity also work well.
 
 ## Public functions
 
