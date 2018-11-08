@@ -6,11 +6,11 @@
    ---------------------------------------------------------------------------------
    D3 (GPIO0)             1 (CS)
    D6 (MISO)              2 (Slave Out)
-                          3 (SIO2)               Vcc (or through pull-up resistor)
+                          3 (SIO2)               Vcc (or through 10K pull-up resistor)
    GND                    4 (Vss)                GND
    D7 (MOSI)              5 (Slave In)
    D5 (SCK)               6 (SCK)
-                          7 (/HOLD)              Vcc (or through pull-up resistor)
+                          7 (/HOLD)              Vcc (or through 10K pull-up resistor)
                           8 (Vcc)                Vcc (+3.3 for 23Kxxx or +3 to +5V for 23LCxxx)
 */
 
@@ -41,7 +41,8 @@ void setup() {
      SRAM Capacity in kilobit
      128, 256, 1024...
 
-     23K256 chip has 256 kilobits, 32768 bytes (128 bytes per 1 kilobit) and 1024 pages (32 byts per page)
+     23K256 chip has 256 kilobits, 32768 bytes (128 bytes per kilobit) and 1024 pages (32 byts per page)
+     23LC512 chip  has 512 kilobits, 65536 bytes and 2048 pages
      23LC1024 chip has 1024 kilobits, 131072 bytes and 4096 pages
   */
 
