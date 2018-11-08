@@ -40,6 +40,9 @@ void setup() {
 
      SRAM Capacity in kilobit
      128, 256, 1024...
+     
+     23K256 chip has 256 kilobits, 32768 bytes (128 bytes per 1 kilobit) and 1024 pages (32 byts per page)
+     23LC1024 chip has 1024 kilobits, 131072 bytes and 4096 pages
   */
 
   sram.init(cs, CLOCK_DIV2, SPI3, LSB, 1024);
