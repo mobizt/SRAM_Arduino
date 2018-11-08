@@ -333,7 +333,7 @@ void SRAM::writeChars(uint32_t address, char *data, uint32_t len)
   disableSRAM();
 }
 
-void SRAM::readPage(uint16_t address, char *data)
+void SRAM::readPage(uint32_t address, char *data)
 {
   setModeRegister(PAGE_MODE);
   setMode(READ);
@@ -343,7 +343,7 @@ void SRAM::readPage(uint16_t address, char *data)
   disableSRAM();
 }
 
-void SRAM::writePage(uint16_t address, char *data)
+void SRAM::writePage(uint32_t address, char *data)
 {
   setModeRegister(PAGE_MODE);
   setMode(WRITE);
